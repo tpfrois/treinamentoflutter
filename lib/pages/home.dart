@@ -17,6 +17,31 @@ class HomePage extends StatelessWidget {
         title: const Text('Treinamento Flutter'),
         centerTitle: true,
       ),
+      drawer: Drawer(
+          child: ListView(children: <Widget>[
+        UserAccountsDrawerHeader(
+          accountName: const Text("Treinamento Flutter"),
+          accountEmail: const Text("@tpfrois"),
+          currentAccountPicture: CircleAvatar(
+            backgroundImage: NetworkImage(urlFotoPerfil),
+          ),
+        ),
+        ListTile(
+          title: const Text("Contador"),
+          leading: const Icon(Icons.add),
+          onTap: () => irParaPagina(const ContadorPage(), context),
+        ),
+        ListTile(
+          title: const Text("Desafio"),
+          leading: const Icon(Icons.star),
+          onTap: () => irParaPagina(const DesafioPage(), context),
+        ),
+        ListTile(
+          title: const Text("Sair"),
+          leading: const Icon(Icons.power_settings_new_sharp),
+          onTap: () => irParaPagina(const LoginPage(), context),
+        ),
+      ])),
       body: Center(
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           CircleAvatar(
