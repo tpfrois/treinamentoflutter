@@ -17,52 +17,34 @@ class HomePage extends StatelessWidget {
         centerTitle: true,
       ),
       body: Center(
-        child:
-            Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           CircleAvatar(
             radius: 80,
             backgroundImage: NetworkImage(urlFotoPerfil),
           ),
-          Column(
-            children: [
-              const Text(
-                "Thiago Frois",
-                style: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              ElevatedButton(
-                  onPressed: () => irParaPagina("contador", context),
-                  child: const Text("Ir para contador")),
-              ElevatedButton(
-                  style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(
-                          Colors.yellow.shade900)),
-                  onPressed: () => irParaPagina("desafio", context),
-                  child: const Text("Desafio"))
-            ],
-          )
+          const Text(
+            "Thiago Frois",
+            style: TextStyle(
+              fontSize: 30,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 30),
+          ElevatedButton(
+              onPressed: () => irParaPagina(const ContadorPage(), context),
+              child: const Text("Ir para contador")),
+          ElevatedButton(
+              style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Colors.yellow.shade900)),
+              onPressed: () => irParaPagina(const DesafioPage(), context),
+              child: const Text("Desafio"))
         ]),
       ),
     );
   }
 
-  void irParaPagina(String pagina, BuildContext context) {
-    switch (pagina.toLowerCase()) {
-      case "contador":
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const ContadorPage()));
-        break;
-      case "desafio":
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const DesafioPage()));
-        break;
-      default:
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-            backgroundColor: Colors.redAccent,
-            content: Text("Página não existe")));
-        break;
-    }
+  void irParaPagina(Widget pagina, BuildContext context) {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => pagina));
   }
 }
