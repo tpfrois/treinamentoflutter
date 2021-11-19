@@ -31,17 +31,15 @@ class _DesafioPageState extends State<DesafioPage> {
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                Column(children: [
-                  Text('Usuário: $_usuario',
-                      style: const TextStyle(
-                          fontSize: 20, fontWeight: FontWeight.bold)),
-                  Text('Nome: $_nome',
-                      style: const TextStyle(
-                          fontSize: 20, fontWeight: FontWeight.bold)),
-                  Text('Biografia: $_biografia',
-                      style: const TextStyle(
-                          fontSize: 20, fontWeight: FontWeight.bold)),
-                ]),
+                Text('Usuário: $_usuario',
+                    style: const TextStyle(
+                        fontSize: 20, fontWeight: FontWeight.bold)),
+                Text('Nome: $_nome',
+                    style: const TextStyle(
+                        fontSize: 20, fontWeight: FontWeight.bold)),
+                Text('Biografia: $_biografia',
+                    style: const TextStyle(
+                        fontSize: 20, fontWeight: FontWeight.bold)),
                 const SizedBox(height: 10),
                 TextFormField(
                   controller: _controllerUsuario,
@@ -66,6 +64,8 @@ class _DesafioPageState extends State<DesafioPage> {
     final response =
         await http.get(Uri.parse('https://api.github.com/users/$usuario'));
 
+    ScaffoldMessenger.of(context).clearSnackBars();
+
     if (response.statusCode == 200) {
       final Map<String, dynamic> dados = json.decode(response.body);
       setState(() {
@@ -73,9 +73,7 @@ class _DesafioPageState extends State<DesafioPage> {
         _nome = dados['name'] ?? "<Sem nome>";
         _biografia = dados['bio'] ?? "<Sem biografia>";
       });
-      ScaffoldMessenger.of(context).clearSnackBars();
     } else {
-      ScaffoldMessenger.of(context).clearSnackBars();
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           backgroundColor: Colors.redAccent,
           content: Text("Ocorreu um erro ao buscar o usuário.")));
