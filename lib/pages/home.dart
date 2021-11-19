@@ -56,15 +56,21 @@ class HomePage extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 30),
-          ElevatedButton(
-              onPressed: () => irParaPagina(const ContadorPage(), context),
-              child: const Text("Ir para contador")),
-          ElevatedButton(
-              style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStateProperty.all<Color>(Colors.yellow.shade900)),
-              onPressed: () => irParaPagina(const DesafioPage(), context),
-              child: const Text("Desafio")),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                  onPressed: () => irParaPagina(const ContadorPage(), context),
+                  child: const Text("Ir para contador")),
+              const SizedBox(width: 20),
+              ElevatedButton(
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(
+                          Colors.yellow.shade900)),
+                  onPressed: () => irParaPagina(const DesafioPage(), context),
+                  child: const Text("Desafio")),
+            ],
+          ),
           IconButton(
               padding: const EdgeInsets.all(0),
               onPressed: () => irParaPagina(const LoginPage(), context),
