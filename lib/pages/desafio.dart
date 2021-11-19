@@ -18,6 +18,9 @@ class _DesafioPageState extends State<DesafioPage> {
 
   final TextEditingController _controllerUsuario = TextEditingController();
 
+  final estiloPadrao =
+      const TextStyle(fontSize: 20, fontWeight: FontWeight.bold);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,15 +34,13 @@ class _DesafioPageState extends State<DesafioPage> {
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                Text('Usuário: $_usuario',
-                    style: const TextStyle(
-                        fontSize: 20, fontWeight: FontWeight.bold)),
-                Text('Nome: $_nome',
-                    style: const TextStyle(
-                        fontSize: 20, fontWeight: FontWeight.bold)),
-                Text('Biografia: $_biografia',
-                    style: const TextStyle(
-                        fontSize: 20, fontWeight: FontWeight.bold)),
+                Text('Usuário: $_usuario', style: estiloPadrao),
+                Text('Nome: $_nome', style: estiloPadrao),
+                Text(
+                  'Biografia: $_biografia',
+                  textAlign: TextAlign.center,
+                  style: estiloPadrao,
+                ),
                 const SizedBox(height: 10),
                 TextFormField(
                   controller: _controllerUsuario,

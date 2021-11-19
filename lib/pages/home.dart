@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:treinamento/pages/login.dart';
 
 import 'contador.dart';
 import 'desafio.dart';
@@ -38,13 +39,23 @@ class HomePage extends StatelessWidget {
                   backgroundColor:
                       MaterialStateProperty.all<Color>(Colors.yellow.shade900)),
               onPressed: () => irParaPagina(const DesafioPage(), context),
-              child: const Text("Desafio"))
+              child: const Text("Desafio")),
+          IconButton(
+              padding: const EdgeInsets.all(0),
+              onPressed: () => irParaPagina(const LoginPage(), context),
+              icon: const Icon(Icons.power_settings_new_sharp,
+                  size: 50, color: Colors.redAccent)),
         ]),
       ),
     );
   }
 
   void irParaPagina(Widget pagina, BuildContext context) {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => pagina));
+    if (pagina is LoginPage) {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => pagina));
+    } else {
+      Navigator.push(context, MaterialPageRoute(builder: (context) => pagina));
+    }
   }
 }
